@@ -83,6 +83,9 @@ func loop(mqttClient MQTT.Client, mqttTopicPrefix string) {
 func publish(mqttClient MQTT.Client, mqttTopicPrefix string, mac string, device device) {
 	token := mqttClient.Publish(mqttTopicPrefix+mac, 2, false, device.Name)
 	token.Wait()
+	if token.Error() != nil {
+		fmt.Println(token.Error())
+	}
 }
 
 func scan() string {
