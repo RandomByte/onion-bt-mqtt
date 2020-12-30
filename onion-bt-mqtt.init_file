@@ -25,7 +25,7 @@ start() {
     fi
 
     cd "$PROJECT_DIR"
-    ./onion-bt-mqtt --mqtt-broker "$MQTT_BROKER" --mqtt-topic-prefix "$MQTT_TOPIC_PREFIX" >> $LOG_PATH 2>&1 & echo $! > $PID_PATH
+    ./onion-bt-mqtt --mqtt-broker "$MQTT_BROKER" --mqtt-topic-prefix "$MQTT_TOPIC_PREFIX" >> "$LOG_PATH" 2>&1 & echo $! > "$PID_PATH"
     echo "Started with pid $(get_pid)"
 }
 
@@ -36,7 +36,7 @@ stop() {
         then
             PID=$(get_pid)
             echo "Killing process $PID"
-            kill -SIGINT $PID
+            kill -SIGINT "$PID"
         else
             echo "Already stopped"
         fi
